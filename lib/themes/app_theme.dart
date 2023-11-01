@@ -21,13 +21,17 @@ import 'package:global_eats/themes/app_colors.dart';
 class AppTheme {
   static const double borderRadius = 10.0;
   static final ThemeData lightTheme = ThemeData.light().copyWith(
+    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff4BB6B7)),
+    primaryColor: DarkColors.primary,
+    cardColor: Colors.white,
+    cardTheme: const CardTheme(elevation: 0, surfaceTintColor: Colors.white),
+    scaffoldBackgroundColor: const Color(0xffebebeb),
     useMaterial3: true,
-    primaryColor: LightColors.primary,
     appBarTheme: const AppBarTheme(
       elevation: 0,
       titleTextStyle: TextStyle(
           color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
-      backgroundColor: LightColors.secondary,
+      backgroundColor: LightColors.primary,
       iconTheme: IconThemeData(color: Colors.white),
     ),
     buttonTheme: const ButtonThemeData(
@@ -36,15 +40,6 @@ class AppTheme {
       ),
       buttonColor: LightColors.primary,
       textTheme: ButtonTextTheme.primary,
-    ),
-    cardTheme: const CardTheme(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
-      ),
-      color: Colors.transparent,
-      surfaceTintColor: Colors.white,
-      elevation: 10,
-      shadowColor: Colors.black,
     ),
     dialogBackgroundColor: Colors.white,
     dialogTheme: DialogTheme(
@@ -137,7 +132,6 @@ class AppTheme {
     ),
     splashColor: LightColors.primaryObscure,
     splashFactory: InkSparkle.constantTurbulenceSeedSplashFactory,
-    scaffoldBackgroundColor: LightColors.secondary,
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: LightColors.primary,
     ),

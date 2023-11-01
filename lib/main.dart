@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:global_eats/providers/auth_provider.dart';
 
 import 'package:global_eats/routes/app_routes.dart';
+import 'package:global_eats/services/navigation_service.dart';
+import 'package:global_eats/services/toast_notifications_service.dart';
 import 'package:global_eats/themes/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
       initialRoute: AppRoutes.initialRoute,
+      navigatorKey: Navigation.navigatorKey,
+      scaffoldMessengerKey: Toast.messengerKey,
       routes: AppRoutes.routes,
     );
   }
