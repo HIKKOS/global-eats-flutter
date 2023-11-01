@@ -20,30 +20,40 @@ class LoginView extends StatelessWidget {
         appBar: AppBar(
           title: const Text('LoginView'),
         ),
-        body: Column(
-          children: [
-            CorreoInput(onChanged: (value) {
-              _data['correo'] = value;
-            }),
-            PasswordInput(onChanged: (value) {
-              _data['password'] = value;
-            }),
-            ElevatedButton(
-              onPressed: () async {
-                final respose = await provider.login(
-                  email: _data['correo'],
-                  password: _data['password'],
-                );
-                if (respose) {
-                  Navigation.pushReplacementNamed(routeName: AppRoutes.home);
-                } else {
-                  Toast.showToast('Error al iniciar sesion');
-                }
-              },
-              child: const Text('Ingresar'),
+        body: Column(children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: Form(
+                child: Column(
+                  children: [
+                    CorreoInput(onChanged: (value) {
+                      _data['correo'] = value;
+                    }),
+                    PasswordInput(onChanged: (value) {
+                      _data['password'] = value;
+                    }),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final respose = await provider.login(
+                          email: _data['correo'],
+                          password: _data['password'],
+                        );
+                        if (respose) {
+                          Navigation.pushReplacementNamed(
+                              routeName: AppRoutes.home);
+                        } else {
+                          Toast.showToast('Error al iniciar sesion');
+                        }
+                      },
+                      child: const Text('Ingresar'),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
   }

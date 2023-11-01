@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/providers/auth_provider.dart';
+
 import 'package:global_eats/routes/app_routes.dart';
 import 'package:global_eats/themes/app_theme.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +17,9 @@ import 'package:provider/provider.dart';
 /// *  sqflite,
 
 void main() async {
-  runApp(MultiProvider(providers: const [], child: const MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AuthProvider()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

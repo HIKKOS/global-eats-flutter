@@ -9,6 +9,10 @@ class Navigation {
         .pushNamed(routeName, arguments: arguments);
   }
 
+  static void unFocus() {
+    FocusScope.of(navigatorKey.currentState!.context).unfocus();
+  }
+
   static Future<dynamic> pushNamedAndRemoveUntil({
     required String routeName,
     RoutePredicate? predicate,

@@ -4,12 +4,13 @@ import '/services/services.dart';
 import '../themes/theme.dart';
 
 class BusquedaInput extends StatelessWidget {
-  final String? initialValue, hintText;
-  final Function(String?) onChanged;
-  final TextEditingController controller;
-  final FocusNode focusNode;
+  final String? hintText;
+
+  final Function(String)? onChanged;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
   final void Function(String)? onFieldSubmitted;
-  final VoidCallback onTapSort, onClear;
+  final Function onClear;
 
   /// El [formProperty] es la propiedad que se va a actualizar generalmente
   /// obtenida de un Map.
@@ -23,14 +24,12 @@ class BusquedaInput extends StatelessWidget {
   /// El [onTapSort] es la función que se ejecuta al presionar el botón de ordenar.
   const BusquedaInput({
     super.key,
-    required this.onChanged,
-    required this.controller,
+    this.onChanged,
     required this.onFieldSubmitted,
-    required this.focusNode,
-    this.hintText = 'Buscar',
-    this.initialValue,
+    this.focusNode,
     required this.onClear,
-    required this.onTapSort,
+    this.controller,
+    this.hintText = 'Buscar',
   });
 
   @override
@@ -55,25 +54,13 @@ class BusquedaInput extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: InkWell(
-                  child: const Icon(Icons.clear, size: 30),
-                  onTap: () {
-                    controller.clear();
-                    FocusScope.of(context).unfocus();
-                    onClear();
-                    controller.text = initialValue ?? '';
-                  },
-                ),
+                    child: IconButton(
+                        onPressed: () {
+                          onClear.call();
+                          Navigation.unFocus();
+                        },
+                        icon: const Icon(Icons.clear_rounded, size: 30))),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    FocusScope.of(context).unfocus();
-                    onTapSort();
-                  },
-                  child: const Icon(Icons.sort, size: 30),
-                ),
-              )
             ],
           ),
         ));
