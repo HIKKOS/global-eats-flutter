@@ -1,46 +1,66 @@
 import 'package:flutter/material.dart';
 import '/themes/theme.dart';
 
-class PasswordInput extends StatelessWidget {
+class PasswordInput extends StatefulWidget {
   final String? initialValue;
+  final String? label;
   final Function(String?) onChanged;
   final TextEditingController? controller;
   final FocusNode? focusNode;
-  final bool obscureText;
-  final VoidCallback? setIsObscure;
+
   const PasswordInput({
     super.key,
     required this.onChanged,
-    required this.setIsObscure,
     this.controller,
     this.focusNode,
     this.initialValue,
-    this.obscureText = true,
+    this.label,
   });
 
   @override
+  State<PasswordInput> createState() => _PasswordInputState();
+}
+
+class _PasswordInputState extends State<PasswordInput> {
+  bool isObscure = true;
+  @override
   Widget build(BuildContext context) {
-    return TextFormField(
-        controller: controller,
-        cursorColor: DarkColors.primary,
-        autofocus: false,
-        keyboardType: TextInputType.text,
-        obscureText: obscureText,
-        onChanged: onChanged,
-        validator: (value) =>
-            value == null || value.isEmpty ? 'Por favor ingrese algo' : null,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        decoration: InputDecoration(
-          hintText: 'Contraseña',
-          prefixIcon: const Icon(Icons.lock_rounded),
-          suffixIcon: IconButton(
-              onPressed: setIsObscure,
-              icon: Icon(
-                obscureText
-                    ? Icons.visibility_rounded
-                    : Icons.visibility_off_rounded,
-                size: 30,
-              )),
-        ));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(widget.label ?? 'Contraseña',
+            style: const TextStyle(
+              color: LightColors.primary,
+              fontSize: 18,
+            )),
+        const SizedBox(height: 10),
+        TextFormField(
+            controller: widget.controller,
+            cursorColor: DarkColors.primary,
+            autofocus: false,
+            keyboardType: TextInputType.text,
+            obscureText: isObscure,
+            onChanged: widget.onChanged,
+            validator: (value) => value == null || value.isEmpty
+                ? 'Por favor ingrese algo'
+                : null,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            decoration: InputDecoration(
+              hintText: 'Contraseña',
+              prefixIcon: const Icon(Icons.lock_rounded),
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    isObscure = !isObscure;
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    isObscure
+                        ? Icons.visibility_rounded
+                        : Icons.visibility_off_rounded,
+                    size: 30,
+                  )),
+            ))
+      ],
+    );
   }
 }
