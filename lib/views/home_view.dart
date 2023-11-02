@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:global_eats/routes/app_routes.dart';
+import 'package:global_eats/services/services.dart';
 import 'package:global_eats/widgets/busqueda_input.dart';
 
 const _categories = ['chinese', 'sodas', 'pasta', 'candies', 'food'];
@@ -13,7 +15,10 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {}, icon: const Icon(Icons.shopping_cart_rounded))
+              onPressed: () {
+                Navigation.pushNamed(routeName: AppRoutes.shoppingCart);
+              },
+              icon: const Icon(Icons.shopping_cart_rounded))
         ],
         title: SizedBox(
           child: BusquedaInput(
