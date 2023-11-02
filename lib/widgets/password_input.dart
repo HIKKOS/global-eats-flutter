@@ -28,11 +28,6 @@ class _PasswordInputState extends State<PasswordInput> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(widget.label ?? 'Contraseña',
-            style: const TextStyle(
-              color: LightColors.primary,
-              fontSize: 18,
-            )),
         const SizedBox(height: 10),
         TextFormField(
             controller: widget.controller,
