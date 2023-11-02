@@ -34,6 +34,7 @@ class NavigationProvider extends ChangeNotifier {
   final List<Widget> _pages = [
     const HomeView(),
     const PerfilView(),
+    const HistoryView(),
   ];
   List<Widget> get pages => _pages;
 
