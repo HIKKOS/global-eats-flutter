@@ -1,6 +1,7 @@
 class ApiRoutes {
-  static const String baseUrl = 'localhost:3000/api/';
+  static const String host = '192.168.0.167:3000';
+  static const String baseUrl = 'http://$host/api';
   static const String login = '$baseUrl/login';
   static const String singIn = '$baseUrl/users';
-  static String getUpdateUserInfo(int id) => '$baseUrl/users/%$id';
+  static String getUserInfo(int id) => '$baseUrl/users/$id';
 }

@@ -27,7 +27,7 @@ class ProductoView extends StatelessWidget {
               'Nombre',
               style: TextStyle(fontSize: 20, color: LightColors.greyText),
             ),
-            CategoryTag(text: 'Categoria'),
+            const CategoryTag(text: 'Categoria'),
             Carrousel(children: [
               Image.network(
                   'https://i5.walmartimages.com/asr/e2d76553-f239-4e9e-94fa-148a8d43fc4a_2.7da2b067e03b435d1154874b4cf9463b.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF'),

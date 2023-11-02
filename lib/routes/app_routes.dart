@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/services/services.dart';
 import 'package:global_eats/views/views.dart';
 import '../views/shopping_cart_view.dart';
 
 class AppRoutes {
-  static const String _initialRoute = _login;
+  static final String _initialRoute = Preferences.jwt == null ? _login : _home;
   static String get initialRoute => _initialRoute;
 
   static final Map<String, Widget Function(BuildContext)> _routes = {
-    _home: (_) => const HomeView(),
+    _home: (_) => const MainView(),
     _login: (_) => const LoginView(),
     _shoppingCart: (_) => const ShoppingCartView(),
   };
 
   static get routes => _routes;
 
-  static const String _home = 'activarLicencia';
+  static const String _home = 'home';
   static String get home => _home;
 
   ///route: login

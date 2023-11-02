@@ -52,9 +52,7 @@ class LoginView extends StatelessWidget {
 }
 
 class _TopLogo extends StatelessWidget {
-  const _TopLogo({
-    super.key,
-  });
+  const _TopLogo();
 
   @override
   Widget build(BuildContext context) {

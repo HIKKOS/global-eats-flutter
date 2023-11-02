@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:global_eats/routes/app_routes.dart';
-import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/app_colors.dart';
-import 'package:global_eats/widgets/busqueda_input.dart';
 
 import '../widgets/carrousel.dart';
 import '../widgets/category_tag.dart';
@@ -14,100 +11,82 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigation.pushNamed(routeName: AppRoutes.shoppingCart);
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // carrousel
+          SizedBox(
+            height: 240,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: Carrousel(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 350,
+                    decoration: const BoxDecoration(color: Colors.amber),
+                  )
+                ],
+              ),
+            ),
+          ),
+          // categorias
+          SizedBox(
+            height: 70,
+            width: MediaQuery.of(context).size.width,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: _categories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CategoryTag(text: _categories[index], onPressed: () {});
               },
-              icon: const Icon(Icons.shopping_cart_rounded))
-        ],
-        title: BusquedaInput(
-            hintText: 'Bucar productos',
-            onFieldSubmitted: (value) {},
-            onClear: () {}),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            // carrousel
-            SizedBox(
-              height: 240,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Carrousel(
-                  children: [
-                    Container(
-                      height: 100,
-                      width: 350,
-                      decoration: const BoxDecoration(color: Colors.amber),
-                    )
-                  ],
-                ),
-              ),
             ),
-            // categorias
-            SizedBox(
-              height: 70,
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: _categories.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return CategoryTag(
-                      text: _categories[index], onPressed: () {});
-                },
-              ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            child: Text('¡Ultimas unidades!',
+                style: TextStyle(
+                    color: LightColors.greyText,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28)),
+          ),
+          SizedBox(
+            height: 300,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: _categories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CardProducto(
+                  index: index,
+                );
+              },
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Text('¡Ultimas unidades!',
-                  style: TextStyle(
-                      color: LightColors.greyText,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28)),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            child: Text('Más vendidos',
+                style: TextStyle(
+                    color: LightColors.greyText,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28)),
+          ),
+          SizedBox(
+            height: 300,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: _categories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CardProducto(
+                  index: index,
+                );
+              },
             ),
-            SizedBox(
-              height: 300,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: _categories.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return CardProducto(
-                    index: index,
-                  );
-                },
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Text('Más vendidos',
-                  style: TextStyle(
-                      color: LightColors.greyText,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28)),
-            ),
-            SizedBox(
-              height: 300,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: _categories.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return CardProducto(
-                    index: index,
-                  );
-                },
-              ),
-            )
-          ]),
-        ),
+          )
+        ]),
       ),
     );
   }
