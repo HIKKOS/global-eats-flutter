@@ -20,6 +20,8 @@ class AuthProvider extends ChangeNotifier {
     required String email,
     required String password,
   }) async {
+    await Future.delayed(const Duration(milliseconds: 1500));
+    return true;
     const url = ApiRoutes.login;
     String body = jsonEncode({
       'enail': email,

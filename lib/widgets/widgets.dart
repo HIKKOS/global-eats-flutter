@@ -4,3 +4,5 @@ export '/widgets/correo_input.dart';
 export '/widgets/marquee.dart';
 export '/widgets/password_input.dart';
 export '/widgets/texto_expandible.dart';
+export '/widgets/carrousel.dart';
+export '/widgets/category_tag.dart';
