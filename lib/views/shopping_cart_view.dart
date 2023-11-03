@@ -63,7 +63,7 @@ class ShoppingCartView extends StatelessWidget {
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width,
                               height: 50,
-                              child: Center(
+                              child: const Center(
                                 child: Text("Continuar Compra"),
                               ),
                             ),
@@ -123,25 +123,34 @@ class ProductCartWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {},
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          splashFactory: NoSplash.splashFactory,
+                        ),
                         child: const Text('Eliminar'),
-                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
                       ),
                       SizedBox(
                         child: Row(
                           children: [
                             TextButton(
                               onPressed: () {},
-                              child: const Text("+"),
+                              style: TextButton.styleFrom(
+                                splashFactory: NoSplash.splashFactory,
+                              ),
+                              child: const Text("-"),
                             ),
                             Text('$index'),
                             TextButton(
+                              style: TextButton.styleFrom(
+                                splashFactory: NoSplash.splashFactory,
+                              ),
                               onPressed: () {},
-                              child: Text("-"),
+                              child: const Text("+"),
                             ),
                           ],
                         ),
                       ),
-                      Text('\$500')
+                      const Text('\$500')
                     ],
                   ),
                 ),
