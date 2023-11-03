@@ -2,6 +2,8 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/categories_provider.dart';
+import 'package:global_eats/providers/product_provider.dart';
 import 'package:global_eats/themes/app_colors.dart';
 import 'package:provider/provider.dart';
 import '../providers/navigation_provider.dart';
@@ -22,7 +24,10 @@ class _MainViewState extends State<MainView> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) {});
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Provider.of<ProductosProvider>(context, listen: false).fetchProductos();
+      Provider.of<CategoriesProvider>(context, listen: false).fetchCategories();
+    });
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:global_eats/services/services.dart';
+import 'package:global_eats/views/producto_view.dart';
+import 'package:global_eats/views/registro_view.dart';
 import 'package:global_eats/views/views.dart';
 import '../views/shopping_cart_view.dart';
 
@@ -11,6 +13,8 @@ class AppRoutes {
     _home: (_) => const MainView(),
     _login: (_) => const LoginView(),
     _shoppingCart: (_) => const ShoppingCartView(),
+    _detallesProducto: (_) => const ProductoView(),
+    _singIn: (_) => const RegistroView(),
   };
 
   static get routes => _routes;
@@ -24,4 +28,12 @@ class AppRoutes {
 
   static const String _shoppingCart = 'shoppingCart';
   static String get shoppingCart => _shoppingCart;
+
+  ///route: detallesProducto
+  static const String _detallesProducto = 'detallesProducto';
+  static String get detallesProducto => _detallesProducto;
+
+  ///route: singIn
+  static const String _singIn = 'singIn';
+  static String get singIn => _singIn;
 }

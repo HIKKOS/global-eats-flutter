@@ -24,5 +24,6 @@ class Preferences {
 
   static bool get isDarkMode => _preferences?.getBool('isDark') ?? false;
   static set isDarkMode(bool value) => _preferences?.setBool('isDark', value);
-  static remove(String key) => _preferences?.remove(key);
+
+  static Future<bool>? remove(String key) => _preferences?.remove(key);
 }

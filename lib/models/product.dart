@@ -13,7 +13,7 @@ class Product {
   final String description;
   final bool status;
   final Category category;
-  final List<dynamic> images;
+  final List<String> images;
 
   Product({
     required this.id,
@@ -36,7 +36,7 @@ class Product {
         description: json["description"],
         status: json["status"],
         category: Category.fromJson(json["category"]),
-        images: List<dynamic>.from(json["images"].map((x) => x)),
+        images: List<String>.from(json["images"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {

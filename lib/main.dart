@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/categories_provider.dart';
 import 'package:global_eats/providers/navigation_provider.dart';
+import 'package:global_eats/providers/product_provider.dart';
 
 import 'package:global_eats/routes/app_routes.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/app_theme.dart';
-import 'package:global_eats/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 /// Dependencias:
@@ -26,6 +27,8 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AuthProvider()),
     ChangeNotifierProvider(create: (_) => NavigationProvider()),
+    ChangeNotifierProvider(create: (_) => ProductosProvider()),
+    ChangeNotifierProvider(create: (_) => CategoriesProvider()),
   ], child: const MyApp()));
 }
 

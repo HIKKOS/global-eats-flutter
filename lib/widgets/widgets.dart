@@ -1,8 +1,11 @@
-export '/widgets/back_to_top.dart';
-export '/widgets/busqueda_input.dart';
-export '/widgets/correo_input.dart';
-export '/widgets/marquee.dart';
-export '/widgets/password_input.dart';
-export '/widgets/texto_expandible.dart';
-export '/widgets/carrousel.dart';
-export '/widgets/category_tag.dart';
+export 'package:global_eats/views/usuario_input.dart';
+export 'package:global_eats/views/telefono_input.dart';
+
+export 'package:global_eats/widgets/back_to_top.dart';
+export 'package:global_eats/widgets/busqueda_input.dart';
+export 'package:global_eats/widgets/correo_input.dart';
+export 'package:global_eats/widgets/marquee.dart';
+export 'package:global_eats/widgets/password_input.dart';
+export 'package:global_eats/widgets/texto_expandible.dart';
+export 'package:global_eats/widgets/carrousel.dart';
+export 'package:global_eats/widgets/category_tag.dart';

@@ -67,6 +67,7 @@ class PerfilView extends StatelessWidget {
                       await authProvider.logout();
                       navigationProvider.clear();
                       await Navigation.pushNamedAndRemoveUntil(
+                          predicate: (route) => false,
                           routeName: AppRoutes.login);
                     },
                   ),

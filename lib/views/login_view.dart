@@ -140,7 +140,7 @@ class _FormLogin extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigation.pushNamed(routeName: AppRoutes.home),
+            onTap: () => Navigation.pushNamed(routeName: AppRoutes.singIn),
             child: const SizedBox(
               height: 50,
               child: Center(
@@ -175,6 +175,7 @@ class _LoginButtonState extends State<_LoginButton> {
           try {
             isLoading = true;
             setState(() {});
+            Navigation.unFocus();
             if (!_formKey.currentState!.validate()) return;
             final respose = await provider.login(
               email: _data['correo'],
