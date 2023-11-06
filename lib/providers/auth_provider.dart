@@ -83,4 +83,8 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
     return true;
   }
+
+  Future<bool> changePassword(String newPassword) async {
+    return true;
+  }
 }

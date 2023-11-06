@@ -42,6 +42,25 @@ class User {
         "status": status,
         "role": role.toJson(),
       };
+
+  User copyWith({
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phone,
+    bool? status,
+    Role? role,
+  }) =>
+      User(
+        id: id ?? this.id,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        email: email ?? this.email,
+        phone: phone ?? this.phone,
+        status: status ?? this.status,
+        role: role ?? this.role,
+      );
 }
 
 class Role {

@@ -3,3 +3,7 @@ export 'package:global_eats/views/login_view.dart';
 export 'package:global_eats/views/test_view.dart';
 export 'package:global_eats/views/main_view.dart';
 export 'package:global_eats/views/history_view.dart';
+export 'package:global_eats/views/editar_correo_view.dart';
+export 'package:global_eats/views/editar_password_view.dart';
+export 'package:global_eats/views/editar_nombre_view.dart';
+export 'package:global_eats/views/editar_telefono_view.dart';

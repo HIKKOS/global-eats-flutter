@@ -98,24 +98,24 @@ class _ListaElementos extends StatelessWidget {
           _AjustesTile(
             title: 'Nombre',
             subtitle: usuario.firstName,
-            route: 'AppRoutes.editarNombre',
+            route: AppRoutes.editarNombre,
             icon: Icons.person_rounded,
           ),
           _AjustesTile(
             icon: Icons.email_rounded,
-            route: 'AppRoutes.editarCorreo',
+            route: AppRoutes.editarCorreo,
             title: 'Correo electrónico',
             subtitle: usuario.email,
           ),
           _AjustesTile(
             icon: Icons.phone_rounded,
-            route: 'AppRoutes.editarTelefono',
+            route: AppRoutes.editarTelefono,
             title: 'Teléfono',
             subtitle: usuario.phone,
           ),
-          const _AjustesTile(
+          _AjustesTile(
             icon: Icons.lock_rounded,
-            route: 'AppRoutes.editarPassword',
+            route: AppRoutes.editarPassword,
             title: 'Contraseña',
             subtitle: 'Editar',
           ),
@@ -139,6 +139,7 @@ class _AjustesTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      splashColor: LightColors.primary,
       leading: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Icon(
