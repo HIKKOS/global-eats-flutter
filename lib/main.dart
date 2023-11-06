@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
+      debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.initialRoute,
       navigatorKey: NavigationKey.navigatorKey,
       scaffoldMessengerKey: Toast.messengerKey,

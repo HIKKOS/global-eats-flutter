@@ -15,6 +15,10 @@ class AppRoutes {
     _shoppingCart: (_) => const ShoppingCartView(),
     _detallesProducto: (_) => const ProductoView(),
     _singIn: (_) => const RegistroView(),
+    _editarCorreo: (_) => const EditarCorreoView(),
+    _editarPassword: (_) => const EditarPasswordView(),
+    _editarTelefono: (_) => const EditarTelefonoView(),
+    _editarNombre: (_) => const EditarNombreView(),
   };
 
   static get routes => _routes;
@@ -36,4 +40,24 @@ class AppRoutes {
   ///route: singIn
   static const String _singIn = 'singIn';
   static String get singIn => _singIn;
+
+  static const String _editarCorreo = 'editarCorreo';
+
+  ///route: editarCorreo
+  static String get editarCorreo => _editarCorreo;
+
+  static const String _editarPassword = 'editarPassword';
+
+  ///route: editarPassword
+  static String get editarPassword => _editarPassword;
+
+  static const String _editarTelefono = 'editarTelefono';
+
+  ///route: editarTelefono
+  static String get editarTelefono => _editarTelefono;
+
+  static const String _editarNombre = 'editarNombre';
+
+  ///route: editarNombre
+  static String get editarNombre => _editarNombre;
 }

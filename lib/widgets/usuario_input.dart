@@ -53,7 +53,7 @@ class UsuarioInput extends StatelessWidget {
         const SizedBox(height: 10),
         TextFormField(
             style: const TextStyle(color: LightColors.greyText),
-            controller: controller,
+            controller: controller ?? TextEditingController(text: initialValue),
             cursorColor: LightColors.primary,
             autofocus: false,
             keyboardType: TextInputType.emailAddress,

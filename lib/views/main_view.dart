@@ -88,8 +88,8 @@ AppBar _buildAppBar(int index) {
   ];
   Map<int, String> titles = {
     0: 'Inicio',
-    1: 'Mis Datos',
     2: 'Historial de compras',
+    1: 'Mis Datos',
     /* 3: 'Videos',
     4: 'Perfil' */
   };
@@ -118,12 +118,12 @@ List<BottomNavyBarItem> _bottomItems = [
   _buildBottomNavyBarItem('Inicio', Icons.home_rounded),
   //_buildBottomNavyBarItem('Compras', Icons.shopping_bag_rounded),
   _buildBottomNavyBarItem(
-    'Perfil',
-    Icons.person_2_rounded,
-  ),
-  _buildBottomNavyBarItem(
     'Historial',
     Icons.history,
+  ),
+  _buildBottomNavyBarItem(
+    'Perfil',
+    Icons.person_2_rounded,
   ),
 ];
 BottomNavyBarItem _buildBottomNavyBarItem(String title, IconData icon) {

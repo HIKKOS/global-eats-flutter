@@ -7,6 +7,8 @@ class CorreoInput extends StatelessWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final String? Function(String?)? validator;
+  final String? label;
+  final String? hintText;
   final bool withoutValidation;
 
   const CorreoInput({
@@ -16,6 +18,8 @@ class CorreoInput extends StatelessWidget {
     this.focusNode,
     this.initialValue,
     this.validator,
+    this.label,
+    this.hintText,
   }) : withoutValidation = false;
 
   const CorreoInput.withoutValidation({
@@ -24,6 +28,8 @@ class CorreoInput extends StatelessWidget {
     this.controller,
     this.focusNode,
     this.initialValue,
+    this.label,
+    this.hintText,
   })  : validator = null,
         withoutValidation = true;
 
@@ -40,17 +46,28 @@ class CorreoInput extends StatelessWidget {
     }
 
     var validator = (withoutValidation) ? null : validationFunction;
-    return TextFormField(
-        controller: controller,
-        cursorColor: DarkColors.primary,
-        autofocus: false,
-        keyboardType: TextInputType.emailAddress,
-        onChanged: onChanged,
-        validator: validator,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        decoration: const InputDecoration(
-          hintText: 'Correo electrónico',
-          prefixIcon: Icon(Icons.email_rounded),
-        ));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label ?? 'Nombre de usuario',
+            style: const TextStyle(
+              color: LightColors.primaryDark,
+              fontSize: 18,
+            )),
+        const SizedBox(height: 10),
+        TextFormField(
+            controller: controller ?? TextEditingController(text: initialValue),
+            cursorColor: DarkColors.primary,
+            autofocus: false,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: onChanged,
+            validator: validator,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            decoration: InputDecoration(
+              hintText: hintText ?? 'Correo electrónico',
+              prefixIcon: const Icon(Icons.email_rounded),
+            )),
+      ],
+    );
   }
 }

@@ -3,6 +3,7 @@ import 'package:global_eats/themes/app_colors.dart';
 
 class TelefonoInput extends StatelessWidget {
   final String? label;
+
   final String? initialValue;
   final Function(String?) onChanged;
   final TextEditingController? controller;
@@ -44,10 +45,15 @@ class TelefonoInput extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(label ?? 'Teléfono',
+            style: const TextStyle(
+              color: LightColors.primaryDark,
+              fontSize: 18,
+            )),
         const SizedBox(height: 10),
         TextFormField(
             style: const TextStyle(color: LightColors.greyText),
-            controller: controller,
+            controller: controller ?? TextEditingController(text: initialValue),
             cursorColor: LightColors.primary,
             autofocus: false,
             keyboardType: TextInputType.phone,

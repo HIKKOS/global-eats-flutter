@@ -39,10 +39,10 @@ class _ConfirmDialogState extends State<MorphDialog> {
           Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(5),
+                  topRight: Radius.circular(5),
                 ),
-                color: LightColors.secondary,
+                color: LightColors.primary,
               ),
               width: MediaQuery.of(context).size.width,
               child: Padding(
@@ -75,18 +75,19 @@ class _ConfirmDialogState extends State<MorphDialog> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                               overlayColor: MaterialStateProperty.all<Color>(
-                                  Colors.white.withOpacity(0.25)),
+                                  LightColors.primary.withOpacity(0.25)),
                               foregroundColor: MaterialStateProperty.all<Color>(
-                                  LightColors.secondary.withOpacity(0.5)),
+                                  LightColors.primary.withOpacity(0.5)),
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  LightColors.secondary),
+                                  LightColors.primary.withOpacity(0.2)),
                               elevation: MaterialStateProperty.all(0)),
                           onPressed: () {
                             widget.onCancelPressed?.call(context);
                           },
                           child: const Text(
                             'Cancelar',
-                            style: TextStyle(color: Colors.white, fontSize: 16),
+                            style: TextStyle(
+                                color: LightColors.greyText, fontSize: 16),
                           ),
                         ),
                       ),

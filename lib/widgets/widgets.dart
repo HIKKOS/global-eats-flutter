@@ -1,5 +1,5 @@
-export 'package:global_eats/views/usuario_input.dart';
-export 'package:global_eats/views/telefono_input.dart';
+export 'package:global_eats/widgets/usuario_input.dart';
+export 'package:global_eats/widgets/telefono_input.dart';
 
 export 'package:global_eats/widgets/back_to_top.dart';
 export 'package:global_eats/widgets/busqueda_input.dart';
