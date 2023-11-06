@@ -12,7 +12,7 @@ Map<String, dynamic> _formData = {
   "lastName": "",
   "phone": "",
   "email": "",
-  "password": ""
+  "userPassword": "",
 };
 GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -114,7 +114,12 @@ class RegistroView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 12.0),
                           child: TelefonoInput(onChanged: (String? value) {
-                            if (value != null) _formData['phone'] = value;
+                            if (value == null) return;
+                            final bool isNotNumeric =
+                                double.tryParse(value) == null;
+                            if (isNotNumeric) return;
+
+                            _formData['phone'] = value;
                           }),
                         ),
                         Padding(
@@ -125,7 +130,9 @@ class RegistroView extends StatelessWidget {
                         ),
                         PasswordInput(
                           onChanged: (String? value) {
-                            if (value != null) _formData['password'] = value;
+                            if (value != null) {
+                              _formData['userPassword'] = value;
+                            }
                           },
                         ),
                       ],

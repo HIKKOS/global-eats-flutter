@@ -4,7 +4,7 @@ import 'package:global_eats/themes/app_colors.dart';
 class TelefonoInput extends StatelessWidget {
   final String? label;
   final String? initialValue;
-  final Function(String?) onChanged;
+  final void Function(String?) onChanged;
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final String? Function(String?)? validator;
@@ -37,6 +37,9 @@ class TelefonoInput extends StatelessWidget {
       if (isEmpty) return 'Por favor ingrese algo';
       final bool isNotNumeric = double.tryParse(value) == null;
       if (isNotNumeric) return 'Por favor ingrese un número de teléfono válido';
+      if (value.length < 10) {
+        return 'Por favor ingrese un número de teléfono válido';
+      }
       return null;
     }
 

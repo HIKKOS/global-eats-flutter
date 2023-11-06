@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:global_eats/routes/api_routes.dart';
 import 'package:global_eats/services/services.dart';
+import 'package:global_eats/utils/logger.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/user.dart';
@@ -64,7 +65,8 @@ class AuthProvider extends ChangeNotifier {
     final respose =
         await http.post(Uri.parse(url), headers: _headers, body: body);
     if (respose.statusCode != 200) {
-      throw Exception('errror');
+      Loggerify.debug(respose.body);
+      throw Exception('error');
     }
     return true;
   }
