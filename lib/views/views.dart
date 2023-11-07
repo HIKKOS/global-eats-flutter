@@ -7,3 +7,4 @@ export 'package:global_eats/views/editar_correo_view.dart';
 export 'package:global_eats/views/editar_password_view.dart';
 export 'package:global_eats/views/editar_nombre_view.dart';
 export 'package:global_eats/views/editar_telefono_view.dart';
+export 'package:global_eats/views/buy_product_view.dart';

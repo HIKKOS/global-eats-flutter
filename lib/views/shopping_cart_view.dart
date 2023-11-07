@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/routes/app_routes.dart';
+
+import '../services/services.dart';
 
 class ShoppingCartView extends StatelessWidget {
   const ShoppingCartView({super.key});
@@ -65,7 +68,10 @@ class ShoppingCartView extends StatelessWidget {
                               child: Text("Continuar Compra"),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigation.pushNamed(
+                                routeName: AppRoutes.buyProduct);
+                          },
                         ),
                       ),
                     ],
