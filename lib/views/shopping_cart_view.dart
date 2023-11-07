@@ -1,80 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/routes/app_routes.dart';
+
+import '../services/services.dart';
 
 class ShoppingCartView extends StatelessWidget {
   const ShoppingCartView({super.key});
-
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
     int index = 500;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Carrito',
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Carrito',
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SizedBox(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      ),
+      body: SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
                 children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .70,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: 8,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ProductCartWidget(index: index);
-                          },
-                        ),
-                      )
-                    ],
-                  ),
                   SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Total: ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '\$$index',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            )),
-                        Center(
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5)))),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: 50,
-                              child: const Center(
-                                child: Text("Continuar Compra"),
-                              ),
-                            ),
-                            onPressed: () {},
+                    height: MediaQuery.of(context).size.height * .75,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: 8,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ProductCartWidget(
+                          index: index,
+                          deviceWidth: deviceWidth,
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0x27000000),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(0, 2),
+                    )
+                  ]),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Total ',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            '\$$index',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5)))),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          child: const Center(
+                            child: Text("Continuar Compra"),
                           ),
                         ),
-                      ],
+                        onPressed: () {
+                          Navigation.pushNamed(routeName: AppRoutes.buyProduct);
+                        },
+                      ),
                     ),
-                  ),
-                ]),
-          ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -85,9 +105,11 @@ class ProductCartWidget extends StatelessWidget {
   const ProductCartWidget({
     super.key,
     required this.index,
+    required this.deviceWidth,
   });
 
   final int index;
+  final double deviceWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -115,10 +137,11 @@ class ProductCartWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .70,
+                        width: deviceWidth * .65,
                         child: const Text(
                           'Maruchan de 10 pesos que vale 5 pesos pero que se vende a 20',
                           overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                         ),
                       ),
                       TextButton(
