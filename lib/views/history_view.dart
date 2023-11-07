@@ -88,13 +88,14 @@ class HistoryProductWidget extends StatelessWidget {
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              TextButton(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                    padding: EdgeInsets.zero,
-                                    splashFactory: NoSplash.splashFactory,
-                                  ),
-                                  child: const Text('Volver a comprar'))
+                              // TextButton(
+                              //   onPressed: () {},
+                              //   style: TextButton.styleFrom(
+                              //     padding: EdgeInsets.zero,
+                              //     splashFactory: NoSplash.splashFactory,
+                              //   ),
+                              //   child: const Text('Volver a comprar'),
+                              // )
                             ],
                           ),
                         )

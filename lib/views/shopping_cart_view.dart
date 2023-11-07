@@ -6,75 +6,72 @@ class ShoppingCartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int index = 500;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Carrito',
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Carrito',
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SizedBox(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: SizedBox(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .70,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: 8,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ProductCartWidget(index: index);
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .70,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: 8,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ProductCartWidget(index: index);
-                          },
+                      Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Total: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '\$$index',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          )),
+                      Center(
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)))),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 50,
+                            child: const Center(
+                              child: Text("Continuar Compra"),
+                            ),
+                          ),
+                          onPressed: () {},
                         ),
-                      )
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Total: ',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '\$$index',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            )),
-                        Center(
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5)))),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: 50,
-                              child: const Center(
-                                child: Text("Continuar Compra"),
-                              ),
-                            ),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ]),
-          ),
+                ),
+              ]),
         ),
       ),
     );
