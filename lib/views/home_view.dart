@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           // carrousel
           SizedBox(
@@ -26,10 +26,12 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Carrousel(
                 children: [
-                  Container(
-                    height: 100,
-                    width: 350,
-                    decoration: const BoxDecoration(color: Colors.amber),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 100,
+                      decoration: const BoxDecoration(color: Colors.amber),
+                    ),
                   )
                 ],
               ),
@@ -159,12 +161,14 @@ class CardProducto extends StatelessWidget {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                        Text('$stock en stock',
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                color: LightColors.primary,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 16))
+                        Text(
+                          '$stock en stock',
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              color: LightColors.primary,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 16),
+                        )
                       ],
                     ),
                   ),
