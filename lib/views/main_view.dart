@@ -1,7 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/user_provider.dart';
 import 'package:global_eats/providers/categories_provider.dart';
 import 'package:global_eats/providers/product_provider.dart';
 import 'package:global_eats/themes/app_colors.dart';
@@ -96,7 +96,7 @@ AppBar _buildAppBar(int index) {
 
   appBar = AppBar(
     toolbarHeight: 100,
-    title: Consumer<AuthProvider>(builder: (_, provider, __) {
+    title: Consumer<UserProvider>(builder: (_, provider, __) {
       if (index == 0) {
         return BusquedaInput(
             hintText: 'Bucar productos',

@@ -5,6 +5,6 @@ class ApiRoutes {
   static const String singIn = '$baseUrl/users';
   static const String products = '$baseUrl/products';
   static const String categories = '$baseUrl/categories';
-
   static String getUserInfo(int id) => '$baseUrl/users/$id';
+  static String getUserTiket(int id) => '$baseUrl/ticket/$id';
 }

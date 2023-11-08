@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:global_eats/models/models.dart';
-import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/user_provider.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/app_colors.dart';
 import 'package:global_eats/widgets/widgets.dart';
@@ -19,7 +18,7 @@ class EditarNombreView extends StatelessWidget {
         centerTitle: true,
         title: const Text('Nombre'),
       ),
-      body: Consumer<AuthProvider>(
+      body: Consumer<UserProvider>(
         builder: (_, provider, __) => Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12),
           child: Column(

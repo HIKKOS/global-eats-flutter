@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/user.dart';
@@ -14,7 +14,7 @@ class PerfilView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(builder: (_, provider, __) {
+    return Consumer<UserProvider>(builder: (_, provider, __) {
       if (provider.user == null) {
         return const Center(child: CircularProgressIndicator());
       }
@@ -56,7 +56,7 @@ class PerfilView extends StatelessWidget {
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               height: 70,
-              child: Consumer2<AuthProvider, NavigationProvider>(
+              child: Consumer2<UserProvider, NavigationProvider>(
                 builder: (__, authProvider, navigationProvider, _) =>
                     ElevatedButton.icon(
                   onPressed: () => Dialogs.showMorph(
@@ -91,7 +91,7 @@ class _ListaElementos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(builder: (_, provider, __) {
+    return Consumer<UserProvider>(builder: (_, provider, __) {
       final User usuario = provider.user!;
       return Column(
         children: [

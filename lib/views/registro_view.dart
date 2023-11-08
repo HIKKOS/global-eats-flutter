@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/user_provider.dart';
 
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/theme.dart';
@@ -172,7 +172,7 @@ class _RegistroButtonState extends State<_RegistroButton> {
         ),
       );
     }
-    return Consumer<AuthProvider>(
+    return Consumer<UserProvider>(
       builder: (_, provider, __) => ElevatedButton(
           onPressed: () async {
             if (!_formKey.currentState!.validate()) return;

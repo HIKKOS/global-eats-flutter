@@ -252,7 +252,28 @@ class BuyProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return ListTile(
+        onTap: null,
+        leading: SizedBox(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Image.network(
+              'https://i5.walmartimages.com/asr/e2d76553-f239-4e9e-94fa-148a8d43fc4a_2.7da2b067e03b435d1154874b4cf9463b.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF',
+              height: 50,
+            ),
+          ),
+        ),
+        title: const Text(
+          'Maruchan de 10 pesos que vale 5 pesos pero que se vende a 20',
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+        subtitle: Text(
+          'MXN \$500',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ));
+    /* return SizedBox(
+
       child: Column(
         children: [
           Row(
@@ -277,6 +298,7 @@ class BuyProductWidget extends StatelessWidget {
                         child: const Text(
                           'Maruchan de 10 pesos que vale 5 pesos pero que se vende a 20',
                           overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
                       Padding(
@@ -294,6 +316,6 @@ class BuyProductWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ); */
   }
 }

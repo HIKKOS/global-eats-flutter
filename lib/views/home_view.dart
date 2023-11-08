@@ -5,6 +5,7 @@ import 'package:global_eats/routes/app_routes.dart';
 import 'package:global_eats/services/navigation_service.dart';
 import 'package:global_eats/themes/app_colors.dart';
 import 'package:global_eats/utils/enums.dart';
+import 'package:global_eats/widgets/card_producto_home.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/carrousel.dart';
@@ -19,7 +20,6 @@ class HomeView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          // carrousel
           SizedBox(
             height: 240,
             child: Padding(
@@ -49,9 +49,14 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: provider.categories.length,
                       itemBuilder: (BuildContext context, int index) {
+                        final category = provider.categories[index];
                         return CategoryTag(
-                            text: provider.categories[index].categoryName,
-                            onPressed: () {});
+                            text: category.categoryName,
+                            onPressed: () {
+                              provider.selectedCategory = category;
+                              Navigation.pushNamed(
+                                  routeName: AppRoutes.productsByCategory);
+                            });
                       },
                     ),
             ),
@@ -97,84 +102,6 @@ class HomeView extends StatelessWidget {
                     fontSize: 28)),
           ),
         ]),
-      ),
-    );
-  }
-}
-
-class CardProducto extends StatelessWidget {
-  const CardProducto({
-    super.key,
-    required this.productName,
-    required this.price,
-    required this.stock,
-    required this.images,
-    this.onPressed,
-  });
-  final String productName;
-  final String price;
-  final int stock;
-  final List<String> images;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: BorderRadius.circular(10),
-        splashColor: LightColors.primary.withOpacity(0.2),
-        highlightColor: LightColors.primary.withOpacity(0.2),
-        child: SizedBox(
-            width: 150,
-            child: Column(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Image.asset(
-                      'assets/images/no-image.png',
-                      width: double.infinity,
-                    )),
-                const Divider(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: Text(
-                            productName,
-                            maxLines: 2,
-                            style: const TextStyle(
-                              color: LightColors.grey,
-                              fontSize: 16,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '\$$price',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        Text(
-                          '$stock en stock',
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                              color: LightColors.primary,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            )),
       ),
     );
   }

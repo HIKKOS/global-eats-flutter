@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
+import 'package:global_eats/models/ticket.dart';
 import 'package:global_eats/routes/api_routes.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/utils/logger.dart';
@@ -7,15 +8,17 @@ import 'package:http/http.dart' as http;
 
 import '../models/user.dart';
 
-class AuthProvider extends ChangeNotifier {
-  AuthProvider() {
+class UserProvider extends ChangeNotifier {
+  UserProvider() {
     if (Preferences.jwt != null) {
       fetchUserData();
+      fetchTickets();
     }
   }
   User? _user;
   User? get user => _user;
-
+  List<Ticket> _tickets = [];
+  List<Ticket> get tickets => _tickets;
   final Map<String, String> _headers = {'Content-Type': 'application/json'};
 
   set user(User? value) {
@@ -85,6 +88,21 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<bool> changePassword(String newPassword) async {
+    return true;
+  }
+
+  Future<bool> fetchTickets() async {
+    final uri =
+        Uri.parse(ApiRoutes.getUserTiket(int.parse(Preferences.userId!)));
+    final response = await http.get(uri, headers: _headers);
+    if (response.statusCode != 200) {
+      return false;
+    }
+    final json = jsonDecode(response.body);
+    for (var element in json['ticket']) {
+      _tickets.add(Ticket.fromJson(element));
+    }
+    notifyListeners();
     return true;
   }
 }

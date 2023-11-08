@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/providers/user_provider.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class HistoryView extends StatelessWidget {
   const HistoryView({super.key});
@@ -12,16 +14,35 @@ class HistoryView extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: SizedBox(
-          height: screenHeight * .90,
-          child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: 5,
-            itemBuilder: (BuildContext context, int index) {
-              return HistoryProductWidget(
-                  screenWidth: screenWidth, formatToday: formatToday);
-            },
-          )),
+      child: Consumer<UserProvider>(
+        builder: (_, provider, __) => (provider.tickets.isEmpty)
+            ? const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.history,
+                    size: 100,
+                    color: Colors.grey,
+                  ),
+                  Text(
+                    'Aqui se mostraran tus compras',
+                    style: TextStyle(color: Colors.grey, fontSize: 20),
+                  ),
+                ],
+              )
+            : SizedBox(
+                height: screenHeight * .90,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: provider.tickets.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final ticket = provider.tickets[index];
+                    return HistoryProductWidget(
+                        screenWidth: screenWidth, formatToday: 'owo');
+                  },
+                )),
+      ),
     );
   }
 }

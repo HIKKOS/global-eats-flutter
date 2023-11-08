@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:global_eats/models/user.dart';
-import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/user_provider.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/app_colors.dart';
 import 'package:global_eats/widgets/widgets.dart';
@@ -14,7 +14,7 @@ class EditarTelefonoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
+    return Consumer<UserProvider>(
       builder: (_, provider, __) => Scaffold(
         appBar: AppBar(
           centerTitle: true,

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:global_eats/models/catergory.dart';
+
 Product productFromJson(String str) => Product.fromJson(json.decode(str));
 
 String productToJson(Product data) => json.encode(data.toJson());
@@ -49,29 +51,5 @@ class Product {
         "status": status,
         "category": category.toJson(),
         "images": List<dynamic>.from(images.map((x) => x)),
-      };
-}
-
-class Category {
-  final int id;
-  final String categoryName;
-  final bool status;
-
-  Category({
-    required this.id,
-    required this.categoryName,
-    required this.status,
-  });
-
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
-        id: json["id"],
-        categoryName: json["categoryName"],
-        status: json["status"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "categoryName": categoryName,
-        "status": status,
       };
 }

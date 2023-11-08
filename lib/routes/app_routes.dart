@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:global_eats/services/services.dart';
+import 'package:global_eats/views/category_view.dart';
 import 'package:global_eats/views/producto_view.dart';
 import 'package:global_eats/views/registro_view.dart';
 import 'package:global_eats/views/views.dart';
@@ -20,6 +21,7 @@ class AppRoutes {
     _editarTelefono: (_) => const EditarTelefonoView(),
     _editarNombre: (_) => const EditarNombreView(),
     _buyProduct: (_) => const BuyProductView(),
+    _productsByCategory: (_) => const CategoryView(),
   };
 
   static get routes => _routes;
@@ -65,4 +67,8 @@ class AppRoutes {
 
   ///route: editarNombre
   static String get editarNombre => _editarNombre;
+
+  ///route: productsByCategory
+  static const String _productsByCategory = 'productsByCategory';
+  static String get productsByCategory => _productsByCategory;
 }

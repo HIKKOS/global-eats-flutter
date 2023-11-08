@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:global_eats/providers/auth_provider.dart';
+import 'package:flutter/services.dart';
+import 'package:global_eats/providers/user_provider.dart';
 import 'package:global_eats/providers/categories_provider.dart';
 import 'package:global_eats/providers/navigation_provider.dart';
 import 'package:global_eats/providers/product_provider.dart';
@@ -22,10 +23,11 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Preferences.init();
 
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => AuthProvider()),
+    ChangeNotifierProvider(create: (_) => UserProvider()),
     ChangeNotifierProvider(create: (_) => NavigationProvider()),
     ChangeNotifierProvider(create: (_) => ProductosProvider()),
     ChangeNotifierProvider(create: (_) => CategoriesProvider()),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:global_eats/providers/auth_provider.dart';
+import 'package:global_eats/providers/user_provider.dart';
 import 'package:global_eats/routes/app_routes.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/theme.dart';
@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
+    return Consumer<UserProvider>(
       builder: (_, provider, __) => Scaffold(
         appBar: AppBar(
           backgroundColor: LightColors.primary,
@@ -169,7 +169,7 @@ class _LoginButtonState extends State<_LoginButton> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return Consumer<AuthProvider>(
+    return Consumer<UserProvider>(
       builder: (_, provider, __) => ElevatedButton(
         onPressed: () async {
           try {

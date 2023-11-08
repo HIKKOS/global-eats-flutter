@@ -150,7 +150,10 @@ class ProductCartWidget extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           splashFactory: NoSplash.splashFactory,
                         ),
-                        child: const Text('Eliminar'),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text('Eliminar'),
+                        ),
                       ),
                       SizedBox(
                         child: Row(
