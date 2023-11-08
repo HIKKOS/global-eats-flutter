@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import '../providers/navigation_provider.dart';
 import '../routes/app_routes.dart';
 import '../services/services.dart';
-import '../widgets/busqueda_input.dart';
+// import '../widgets/busqueda_input.dart';
 
 bool _exit = false;
 
@@ -32,6 +32,7 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
     return Consumer<NavigationProvider>(
       builder: (context, navigationProvider, child) => WillPopScope(
           onWillPop: () async {
@@ -98,10 +99,16 @@ AppBar _buildAppBar(int index) {
     toolbarHeight: 100,
     title: Consumer<UserProvider>(builder: (_, provider, __) {
       if (index == 0) {
-        return BusquedaInput(
-            hintText: 'Bucar productos',
-            onFieldSubmitted: (value) {},
-            onClear: () {});
+        return GestureDetector(
+            onTap: () {
+              Navigation.pushNamed(routeName: AppRoutes.searchPage);
+            },
+            child: SearchBox(deviceWidth: double.infinity));
+        // BusquedaInput(
+        //   hintText: 'Bucar productos',
+        //   onFieldSubmitted: (value) {},
+        //   onClear: () {},
+        // );
       }
       if (titles[index] != null) {
         return Text('${titles[index]}');
@@ -137,4 +144,49 @@ BottomNavyBarItem _buildBottomNavyBarItem(String title, IconData icon) {
     inactiveColor: const Color(0xff1D4244),
     textAlign: TextAlign.center,
   );
+}
+
+class SearchBox extends StatelessWidget {
+  const SearchBox({
+    super.key,
+    required this.deviceWidth,
+    this.title,
+  });
+
+  final double deviceWidth;
+
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: SizedBox(
+        width: deviceWidth,
+        height: 50,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(
+                color: Theme.of(context).colorScheme.primary, width: .5),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title == null ? "Buscar" : title!,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const Icon(
+                  Icons.search,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

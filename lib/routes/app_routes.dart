@@ -22,12 +22,17 @@ class AppRoutes {
     _editarNombre: (_) => const EditarNombreView(),
     _buyProduct: (_) => const BuyProductView(),
     _productsByCategory: (_) => const CategoryView(),
+    _searchPage: (_) => const SearchPageView(),
   };
 
   static get routes => _routes;
 
   static const String _home = 'home';
   static String get home => _home;
+
+  //route: searchPage
+  static const String _searchPage = 'search';
+  static String get searchPage => _searchPage;
 
   ///route: login
   static const String _login = 'login';
