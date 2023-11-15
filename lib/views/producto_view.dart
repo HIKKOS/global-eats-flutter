@@ -25,12 +25,12 @@ class ProductoView extends StatelessWidget {
                     width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: Carrousel(children: [
-                        Image.network(
-                            'https://i5.walmartimages.com/asr/e2d76553-f239-4e9e-94fa-148a8d43fc4a_2.7da2b067e03b435d1154874b4cf9463b.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF'),
-                        Image.network(
-                            'https://i5.walmartimages.com/asr/e2d76553-f239-4e9e-94fa-148a8d43fc4a_2.7da2b067e03b435d1154874b4cf9463b.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF')
-                      ]),
+                      child: provider.seleccionado.images.isEmpty
+                          ? Image.asset('assets/images/no-image.png')
+                          : Carrousel(
+                              children: provider.seleccionado.images
+                                  .map((String e) => Image.network(e))
+                                  .toList()),
                     ),
                   ),
                   Padding(
@@ -117,7 +117,77 @@ class ProductoView extends StatelessWidget {
                                 height: 60,
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (_) {
+                                            return BottomSheet(
+                                                onClosing: () {},
+                                                builder: (_) {
+                                                  return SizedBox(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.3,
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  vertical:
+                                                                      16.0),
+                                                          child: const Text(
+                                                            'Cantidad',
+                                                            style: TextStyle(
+                                                                fontSize: 24,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                        const Text(
+                                                          'Elige la cantidad de productos a comprar',
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            const IconButton(
+                                                                onPressed: null,
+                                                                icon: Icon(Icons
+                                                                    .add_rounded)),
+                                                            Container(
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  0.2,
+                                                              color: Colors.red,
+                                                              child: Text('1'),
+                                                            ),
+                                                            const IconButton(
+                                                                onPressed: null,
+                                                                icon: Icon(Icons
+                                                                    .add_rounded))
+                                                          ],
+                                                        ),
+                                                        const ElevatedButton(
+                                                            onPressed: null,
+                                                            child:
+                                                                Text('Comprar'))
+                                                      ],
+                                                    ),
+                                                  );
+                                                });
+                                          });
+                                    },
                                     child: const Text(
                                       'Comprar',
                                       style: TextStyle(

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:global_eats/models/models.dart';
-import 'package:global_eats/models/user.dart';
 import 'package:global_eats/providers/user_provider.dart';
-import 'package:global_eats/providers/providers.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/app_colors.dart';
 import 'package:global_eats/widgets/widgets.dart';

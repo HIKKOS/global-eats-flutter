@@ -4,7 +4,6 @@ import 'package:global_eats/models/catergory.dart';
 import 'package:global_eats/models/product.dart';
 import 'package:global_eats/routes/api_routes.dart';
 import 'package:global_eats/utils/enums.dart';
-import 'package:global_eats/widgets/category_tag.dart';
 import 'package:http/http.dart' as http;
 
 class CategoriesProvider extends ChangeNotifier {

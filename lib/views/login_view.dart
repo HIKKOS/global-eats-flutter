@@ -4,6 +4,7 @@ import 'package:global_eats/providers/user_provider.dart';
 import 'package:global_eats/routes/app_routes.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/theme.dart';
+import 'package:global_eats/utils/logger.dart';
 import 'package:global_eats/widgets/correo_input.dart';
 
 import 'package:global_eats/widgets/password_input.dart';
@@ -188,6 +189,7 @@ class _LoginButtonState extends State<_LoginButton> {
             }
           } on Exception catch (e) {
             Toast.showToast(e.toString());
+            Loggerify.debug(e.toString());
           } finally {
             isLoading = false;
             setState(() {});

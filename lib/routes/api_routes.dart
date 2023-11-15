@@ -1,6 +1,6 @@
 class ApiRoutes {
-  static const String host = 'fb51t1xn-3000.use.devtunnels.ms';
-  static const String baseUrl = 'https://$host/api';
+  static const String host = '10.1.100.77:3000';
+  static const String baseUrl = 'http://$host/api';
   static const String login = '$baseUrl/login';
   static const String singIn = '$baseUrl/users';
   static const String products = '$baseUrl/products';
