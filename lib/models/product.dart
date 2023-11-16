@@ -10,7 +10,7 @@ class Product {
   final int id;
   final String productName;
   final String price;
-  final int stock;
+  int stock;
   final int categoryId;
   final String description;
   final bool status;
@@ -52,4 +52,27 @@ class Product {
         "category": category.toJson(),
         "images": List<dynamic>.from(images.map((x) => x)),
       };
+
+  copyWith({
+    id,
+    productName,
+    price,
+    stock,
+    categoryId,
+    description,
+    status,
+    category,
+    images,
+  }) {
+    return Product(
+        id: id ?? this.id,
+        productName: productName ?? this.productName,
+        price: price ?? this.price,
+        stock: stock ?? this.stock,
+        categoryId: categoryId ?? this.categoryId,
+        description: description ?? this.description,
+        status: status ?? this.status,
+        category: category ?? this.category,
+        images: images ?? this.images);
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/models/ticket.dart';
 import 'package:global_eats/providers/user_provider.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HistoryView extends StatelessWidget {
@@ -8,41 +8,84 @@ class HistoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime today = DateTime.now();
-    var formatToday = DateFormat.yMMMMd().format(today);
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Consumer<UserProvider>(
         builder: (_, provider, __) => (provider.tickets.isEmpty)
-            ? const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.history,
-                    size: 100,
-                    color: Colors.grey,
-                  ),
-                  Text(
-                    'Aqui se mostraran tus compras',
-                    style: TextStyle(color: Colors.grey, fontSize: 20),
-                  ),
-                ],
-              )
-            : SizedBox(
-                height: screenHeight * .90,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: provider.tickets.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final ticket = provider.tickets[index];
-                    return HistoryProductWidget(
-                        screenWidth: screenWidth, formatToday: 'owo');
-                  },
-                )),
+            ? const _EmptyHistory()
+            : const _History(),
       ),
+    );
+  }
+}
+
+class _History extends StatelessWidget {
+  const _History();
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<UserProvider>(
+        builder: (_, provider, __) => SizedBox(
+            height: MediaQuery.sizeOf(context).height * .90,
+            child: RefreshIndicator(
+              onRefresh: () async {
+                await provider.fetchTickets();
+              },
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: provider.products.keys.length,
+                itemBuilder: (_, int ticketIndex) {
+                  final fecha = provider.products.entries.toList()[ticketIndex];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: Text(
+                          'Comprado el: ${fecha.key}',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: fecha.value.length,
+                          itemBuilder: (_, productIndex) {
+                            final product = fecha.value[productIndex];
+                            return HistoryProductWidget(
+                              product: product,
+                            );
+                          }),
+                    ],
+                  );
+                },
+              ),
+            )));
+  }
+}
+
+class _EmptyHistory extends StatelessWidget {
+  const _EmptyHistory();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.history,
+          size: 100,
+          color: Colors.grey,
+        ),
+        Text(
+          'Aqui se mostraran tus compras',
+          style: TextStyle(color: Colors.grey, fontSize: 20),
+        ),
+      ],
     );
   }
 }
@@ -50,12 +93,10 @@ class HistoryView extends StatelessWidget {
 class HistoryProductWidget extends StatelessWidget {
   const HistoryProductWidget({
     super.key,
-    required this.screenWidth,
-    required this.formatToday,
+    required this.product,
   });
 
-  final double screenWidth;
-  final String formatToday;
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +104,7 @@ class HistoryProductWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            width: screenWidth,
+            width: MediaQuery.sizeOf(context).width,
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -77,7 +118,7 @@ class HistoryProductWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            formatToday,
+                            'compraste: ${product.amount}',
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const Text(
@@ -92,8 +133,9 @@ class HistoryProductWidget extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Image.network(
-                          'https://i5.walmartimages.com/asr/e2d76553-f239-4e9e-94fa-148a8d43fc4a_2.7da2b067e03b435d1154874b4cf9463b.png?odnHeight=768&odnWidth=768&odnBg=FFFFFF',
+                        Image.asset(
+                          'assets/images/no-image.png',
+                          height: 80,
                           width: 80,
                         ),
                         Padding(
@@ -102,11 +144,12 @@ class HistoryProductWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: screenWidth * .60,
-                                child: const Text(
-                                  'Maruchan de 10 pesos que vale 5 pesos pero que se vende a 20',
+                                width: MediaQuery.sizeOf(context).width * .60,
+                                child: Text(
+                                  product.productName,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                               // TextButton(

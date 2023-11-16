@@ -19,6 +19,11 @@ class ProductosProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  set seleccionadoCount(int count) {
+    _seleccionado.stock = _seleccionado.stock - count;
+    notifyListeners();
+  }
+
   Future<List<Product>> fetchProductos() async {
     final url = Uri.parse(ApiRoutes.products);
     final json = jsonDecode((await http.get(url)).body);

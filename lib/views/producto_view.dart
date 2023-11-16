@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/models/buyInfo.dart';
 import 'package:global_eats/providers/product_provider.dart';
+import 'package:global_eats/providers/user_provider.dart';
+import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/app_colors.dart';
 import 'package:global_eats/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+
+int _cantidadProducto = 1;
 
 class ProductoView extends StatelessWidget {
   const ProductoView({super.key});
@@ -119,6 +124,8 @@ class ProductoView extends StatelessWidget {
                                 child: ElevatedButton(
                                     onPressed: () {
                                       showModalBottomSheet(
+                                          enableDrag: true,
+                                          showDragHandle: true,
                                           context: context,
                                           builder: (_) {
                                             return BottomSheet(
@@ -129,17 +136,16 @@ class ProductoView extends StatelessWidget {
                                                                 context)
                                                             .height *
                                                         0.3,
-                                                    child: Column(
+                                                    child: const Column(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
                                                       children: [
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
                                                                   vertical:
                                                                       16.0),
-                                                          child: const Text(
+                                                          child: Text(
                                                             'Cantidad',
                                                             style: TextStyle(
                                                                 fontSize: 24,
@@ -148,40 +154,14 @@ class ProductoView extends StatelessWidget {
                                                                         .bold),
                                                           ),
                                                         ),
-                                                        const Text(
+                                                        Text(
                                                           'Elige la cantidad de productos a comprar',
                                                           style: TextStyle(
                                                             fontSize: 18,
                                                           ),
                                                         ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            const IconButton(
-                                                                onPressed: null,
-                                                                icon: Icon(Icons
-                                                                    .add_rounded)),
-                                                            Container(
-                                                              width: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .width *
-                                                                  0.2,
-                                                              color: Colors.red,
-                                                              child: Text('1'),
-                                                            ),
-                                                            const IconButton(
-                                                                onPressed: null,
-                                                                icon: Icon(Icons
-                                                                    .add_rounded))
-                                                          ],
-                                                        ),
-                                                        const ElevatedButton(
-                                                            onPressed: null,
-                                                            child:
-                                                                Text('Comprar'))
+                                                        _ProductoCounter(),
+                                                        _BuyButton()
                                                       ],
                                                     ),
                                                   );
@@ -200,6 +180,92 @@ class ProductoView extends StatelessWidget {
               ),
             ),
           )),
+    );
+  }
+}
+
+class _BuyButton extends StatefulWidget {
+  const _BuyButton({
+    super.key,
+  });
+
+  @override
+  State<_BuyButton> createState() => _BuyButtonState();
+}
+
+class _BuyButtonState extends State<_BuyButton> {
+  bool isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer2<ProductosProvider, UserProvider>(
+      builder: (_, prodProv, userProv, __) => isLoading
+          ? const ElevatedButton(
+              onPressed: null, child: CircularProgressIndicator())
+          : ElevatedButton(
+              onPressed: () async {
+                isLoading = true;
+                setState(() {});
+                final producto = prodProv.seleccionado;
+                final misProductos = [
+                  BuyModel(
+                      productId: producto.id,
+                      productName: producto.productName,
+                      amount: _cantidadProducto,
+                      price: int.parse(producto.price))
+                ];
+                final res = await userProv.buy(misProductos);
+
+                if (res) {
+                  Toast.showToast('Compra exitosa');
+                  await userProv.fetchTickets();
+                  prodProv.seleccionadoCount = _cantidadProducto;
+                  Navigation.popTwice();
+                } else {
+                  Toast.showToast('Algo salio mal');
+                }
+                isLoading = false;
+                setState(() {});
+              },
+              child: const Text('Comprar')),
+    );
+  }
+}
+
+class _ProductoCounter extends StatefulWidget {
+  const _ProductoCounter();
+
+  @override
+  State<_ProductoCounter> createState() => _ProductoCounterState();
+}
+
+class _ProductoCounterState extends State<_ProductoCounter> {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ProductosProvider>(
+      builder: (_, provider, __) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+              onPressed: () {
+                if (_cantidadProducto == 1) return;
+                _cantidadProducto--;
+                setState(() {});
+              },
+              icon: Icon(Icons.remove_rounded)),
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width * 0.2,
+            child: Center(child: Text(_cantidadProducto.toString())),
+          ),
+          IconButton(
+              onPressed: () {
+                if (_cantidadProducto == provider.seleccionado.stock) return;
+                _cantidadProducto++;
+                setState(() {});
+              },
+              icon: Icon(Icons.add_rounded))
+        ],
+      ),
     );
   }
 }
