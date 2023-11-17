@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:global_eats/models/buyInfo.dart';
+import 'package:global_eats/models/buy_info.dart';
 import 'package:global_eats/providers/product_provider.dart';
 import 'package:global_eats/providers/user_provider.dart';
+import 'package:global_eats/routes/api_routes.dart';
 import 'package:global_eats/services/services.dart';
 import 'package:global_eats/themes/app_colors.dart';
-import 'package:global_eats/widgets/widgets.dart';
+
 import 'package:provider/provider.dart';
 
 int _cantidadProducto = 1;
@@ -30,12 +31,12 @@ class ProductoView extends StatelessWidget {
                     width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: provider.seleccionado.images.isEmpty
+                      child: provider.seleccionado.imageURl == null
                           ? Image.asset('assets/images/no-image.png')
-                          : Carrousel(
-                              children: provider.seleccionado.images
-                                  .map((String e) => Image.network(e))
-                                  .toList()),
+                          : Image.network(
+                              '${ApiRoutes.img}/${provider.seleccionado.imageURl}',
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
                   Padding(
@@ -185,9 +186,7 @@ class ProductoView extends StatelessWidget {
 }
 
 class _BuyButton extends StatefulWidget {
-  const _BuyButton({
-    super.key,
-  });
+  const _BuyButton();
 
   @override
   State<_BuyButton> createState() => _BuyButtonState();
@@ -195,6 +194,11 @@ class _BuyButton extends StatefulWidget {
 
 class _BuyButtonState extends State<_BuyButton> {
   bool isLoading = false;
+  @override
+  void initState() {
+    super.initState();
+    _cantidadProducto = 0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -252,7 +256,7 @@ class _ProductoCounterState extends State<_ProductoCounter> {
                 _cantidadProducto--;
                 setState(() {});
               },
-              icon: Icon(Icons.remove_rounded)),
+              icon: const Icon(Icons.remove_rounded)),
           SizedBox(
             width: MediaQuery.sizeOf(context).width * 0.2,
             child: Center(child: Text(_cantidadProducto.toString())),
@@ -263,7 +267,7 @@ class _ProductoCounterState extends State<_ProductoCounter> {
                 _cantidadProducto++;
                 setState(() {});
               },
-              icon: Icon(Icons.add_rounded))
+              icon: const Icon(Icons.add_rounded))
         ],
       ),
     );

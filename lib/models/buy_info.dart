@@ -1,4 +1,3 @@
-// ignore: file_names
 class BuyModel {
   final int productId;
   final String productName;

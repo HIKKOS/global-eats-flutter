@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/utils/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchHistory {
@@ -63,7 +64,7 @@ class _SearchPageViewState extends State<SearchPageView> {
         //     Navigator.pop(context);
         //   },
         // ),
-        
+
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -97,7 +98,7 @@ class _SearchPageViewState extends State<SearchPageView> {
                       }
                       searchHistory.searchs.add(value);
                     });
-                    print(value);
+                    Loggerify.debug(value);
                     // Navigator.of(context).pushReplacement(
                     //   MaterialPageRoute(
                     //     builder: (context) =>

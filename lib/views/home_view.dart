@@ -79,16 +79,18 @@ class HomeView extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: provider.productos.length,
                       itemBuilder: (BuildContext context, int index) {
+                        final producto = provider.productos[index];
+
                         return CardProducto(
                             onPressed: () {
-                              provider.seleccionado = provider.productos[index];
+                              provider.seleccionado = producto;
                               Navigation.pushNamed(
                                   routeName: AppRoutes.detallesProducto);
                             },
-                            productName: provider.productos[index].productName,
-                            price: provider.productos[index].price,
-                            stock: provider.productos[index].stock,
-                            images: provider.productos[index].images);
+                            productName: producto.productName,
+                            price: producto.price,
+                            stock: producto.stock,
+                            image: producto.imageURl);
                       },
                     ),
             ),

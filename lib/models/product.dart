@@ -15,7 +15,7 @@ class Product {
   final String description;
   final bool status;
   final Category category;
-  final List<String> images;
+  final String? image;
 
   Product({
     required this.id,
@@ -26,8 +26,15 @@ class Product {
     required this.description,
     required this.status,
     required this.category,
-    required this.images,
+    this.image,
   });
+  String? get imageURl {
+    if (image == null) {
+      return null;
+    }
+    String url = '$id/$image';
+    return url;
+  }
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
@@ -38,7 +45,7 @@ class Product {
         description: json["description"],
         status: json["status"],
         category: Category.fromJson(json["category"]),
-        images: List<String>.from(json["images"].map((x) => x)),
+        image: json["images"].length == 0 ? null : json["images"][0],
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,7 +57,7 @@ class Product {
         "description": description,
         "status": status,
         "category": category.toJson(),
-        "images": List<dynamic>.from(images.map((x) => x)),
+        "images": [image],
       };
 
   copyWith({
@@ -62,7 +69,7 @@ class Product {
     description,
     status,
     category,
-    images,
+    image,
   }) {
     return Product(
         id: id ?? this.id,
@@ -73,6 +80,6 @@ class Product {
         description: description ?? this.description,
         status: status ?? this.status,
         category: category ?? this.category,
-        images: images ?? this.images);
+        image: image ?? this.image);
   }
 }

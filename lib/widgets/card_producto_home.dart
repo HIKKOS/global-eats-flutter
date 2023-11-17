@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:global_eats/routes/api_routes.dart';
 import 'package:global_eats/themes/app_colors.dart';
 
 class CardProducto extends StatelessWidget {
@@ -7,13 +8,13 @@ class CardProducto extends StatelessWidget {
     required this.productName,
     required this.price,
     required this.stock,
-    required this.images,
+    required this.image,
     this.onPressed,
   });
   final String productName;
   final String price;
   final int stock;
-  final List<String> images;
+  final String? image;
   final VoidCallback? onPressed;
 
   @override
@@ -29,11 +30,18 @@ class CardProducto extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Image.asset(
-                      'assets/images/no-image.png',
-                      width: double.infinity,
-                    )),
+                  padding: const EdgeInsets.all(12.0),
+                  child: image == null
+                      ? Image.asset(
+                          'assets/images/no-image.png',
+                          height: 150,
+                        )
+                      : Image.network(
+                          '${ApiRoutes.img}/$image',
+                          fit: BoxFit.cover,
+                          height: 150,
+                        ),
+                ),
                 const Divider(),
                 Expanded(
                   child: Padding(

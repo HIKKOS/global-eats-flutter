@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
-import 'package:global_eats/models/buyInfo.dart';
+import 'package:global_eats/models/buy_info.dart';
 import 'package:global_eats/models/ticket.dart';
 import 'package:global_eats/routes/api_routes.dart';
 import 'package:global_eats/services/services.dart';

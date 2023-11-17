@@ -32,7 +32,6 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
     return Consumer<NavigationProvider>(
       builder: (context, navigationProvider, child) => WillPopScope(
           onWillPop: () async {
@@ -103,7 +102,7 @@ AppBar _buildAppBar(int index) {
             onTap: () {
               Navigation.pushNamed(routeName: AppRoutes.searchPage);
             },
-            child: SearchBox(deviceWidth: double.infinity));
+            child: const SearchBox(deviceWidth: double.infinity));
         // BusquedaInput(
         //   hintText: 'Bucar productos',
         //   onFieldSubmitted: (value) {},
