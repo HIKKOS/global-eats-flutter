@@ -26,13 +26,23 @@ class HomeView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Carrousel(
                 children: [
+                  ClipRRect(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Image.asset(
+                        'assets/images/antojo.png',
+                        height: 100,
+                      ),
+                      // Container(
+                      //   height: 100,
+                      //   decoration: const BoxDecoration(color: Colors.amber),
+                      // ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 100,
-                      decoration: const BoxDecoration(color: Colors.amber),
-                    ),
-                  )
+                    child: Image.asset('assets/images/sed.png'),
+                  ),
                 ],
               ),
             ),

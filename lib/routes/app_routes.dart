@@ -23,6 +23,7 @@ class AppRoutes {
     _buyProduct: (_) => const BuyProductView(),
     _productsByCategory: (_) => const CategoryView(),
     _searchPage: (_) => const SearchPageView(),
+    _addresses: (_) => const AdressView(),
   };
 
   static get routes => _routes;
@@ -33,6 +34,10 @@ class AppRoutes {
   //route: searchPage
   static const String _searchPage = 'search';
   static String get searchPage => _searchPage;
+
+  //route: addresses
+  static const String _addresses = 'addresses';
+  static String get addresses => _addresses;
 
   ///route: login
   static const String _login = 'login';
