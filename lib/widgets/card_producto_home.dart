@@ -30,25 +30,25 @@ class CardProducto extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: image == null
                       ? Image.asset(
                           'assets/images/no-image.png',
-                          height: 150,
+                          height: 125,
                         )
                       : Image.network(
-                          '${ApiRoutes.img}/$image',
+                          // '${ApiRoutes.img}/$image'
+                          'https://th.bing.com/th/id/OIP.HSYrkNFa31pSztw3anN6gwHaHa?rs=1&pid=ImgDetMain',
                           fit: BoxFit.cover,
-                          height: 150,
+                          height: 125,
                         ),
                 ),
-                const Divider(),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
@@ -57,8 +57,9 @@ class CardProducto extends StatelessWidget {
                             productName,
                             maxLines: 2,
                             style: const TextStyle(
-                              color: LightColors.grey,
-                              fontSize: 16,
+                              color: LightColors.primaryDark,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -66,16 +67,16 @@ class CardProducto extends StatelessWidget {
                         Text(
                           '\$$price',
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
                         (stock == 0)
                             ? const Text(
-                                'agotado',
+                                'Agotado',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     color: LightColors.red,
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 16),
+                                    fontSize: 14),
                               )
                             : Text(
                                 '$stock en stock',
@@ -83,7 +84,7 @@ class CardProducto extends StatelessWidget {
                                 style: const TextStyle(
                                     color: LightColors.primary,
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 16),
+                                    fontSize: 14),
                               )
                       ],
                     ),

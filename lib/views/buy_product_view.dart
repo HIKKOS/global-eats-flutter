@@ -23,59 +23,54 @@ class BuyProductView extends StatelessWidget {
               children: [
                 SizedBox(
                   width: deviceWidth,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigation.pushNamed(routeName: AppRoutes.addresses);
-                    },
-                    child: Card(
-                      shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: deviceWidth * .90,
-                              child: Text(
-                                'Jose Antonio Ruiz Sanchez',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                                overflow: TextOverflow.clip,
-                              ),
+                  child: Card(
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: deviceWidth * .90,
+                            child: Text(
+                              'Jose Antonio Ruiz Sanchez',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                              overflow: TextOverflow.clip,
                             ),
-                            SizedBox(
-                              width: deviceWidth * .90,
-                              child: Text(
-                                '9992321123',
-                                overflow: TextOverflow.clip,
-                              ),
+                          ),
+                          SizedBox(
+                            width: deviceWidth * .90,
+                            child: Text(
+                              '9992321123',
+                              overflow: TextOverflow.clip,
                             ),
-                            SizedBox(
-                              width: deviceWidth * .90,
-                              child: Text(
-                                'Calle 54 x 4A #504A',
-                                overflow: TextOverflow.clip,
-                              ),
+                          ),
+                          SizedBox(
+                            width: deviceWidth * .90,
+                            child: Text(
+                              'Calle 54 x 4A #504A',
+                              overflow: TextOverflow.clip,
                             ),
-                            SizedBox(
-                              width: deviceWidth * .90,
-                              child: Text(
-                                'Ultima casa roja',
-                                overflow: TextOverflow.clip,
-                              ),
+                          ),
+                          SizedBox(
+                            width: deviceWidth * .90,
+                            child: Text(
+                              'Ultima casa roja',
+                              overflow: TextOverflow.clip,
                             ),
-                            SizedBox(
-                              width: deviceWidth * .90,
-                              child: Text(
-                                'Merida, Yucatan, Mexico, 97370',
-                                overflow: TextOverflow.clip,
-                              ),
+                          ),
+                          SizedBox(
+                            width: deviceWidth * .90,
+                            child: Text(
+                              'Merida, Yucatan, Mexico, 97370',
+                              overflow: TextOverflow.clip,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

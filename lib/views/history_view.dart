@@ -118,7 +118,7 @@ class HistoryProductWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'compraste: ${product.amount}',
+                            'Compraste: ${product.amount}',
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           const Text(

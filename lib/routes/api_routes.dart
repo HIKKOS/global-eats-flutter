@@ -1,6 +1,6 @@
 class ApiRoutes {
-  static const String host = '10.2.8.120:3000';
-  static const String baseUrl = 'http://$host/api';
+  // static const String host = '10.2.8.120:3000';
+  static const String baseUrl = 'https://globaleats.onrender.com/api';
   static const String login = '$baseUrl/login';
   static const String singIn = '$baseUrl/users';
   static const String buy = '$baseUrl/buy';

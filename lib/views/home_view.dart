@@ -81,7 +81,7 @@ class HomeView extends StatelessWidget {
           ),
           Consumer<ProductosProvider>(
             builder: (_, provider, __) => SizedBox(
-              height: 300,
+              height: 250,
               child: provider.state == ProviderState.loading
                   ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(

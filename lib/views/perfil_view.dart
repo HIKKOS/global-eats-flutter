@@ -119,6 +119,10 @@ class _ListaElementos extends StatelessWidget {
             title: 'Contraseña',
             subtitle: 'Editar',
           ),
+          _AjustesTile(
+              title: 'Consumos',
+              route: AppRoutes.addresses,
+              icon: Icons.pie_chart)
         ],
       );
     });

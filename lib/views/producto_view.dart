@@ -22,7 +22,7 @@ class ProductoView extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,27 +40,29 @@ class ProductoView extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 10.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            decoration: BoxDecoration(
-                                color: LightColors.primary,
-                                borderRadius: BorderRadius.circular(5)),
-                            width: MediaQuery.of(context).size.width * 0.4,
+                          // decoration: BoxDecoration(
+                          //   color: LightColors.primary,
+                          //   borderRadius: BorderRadius.circular(5),
+                          // ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
                             child: Center(
-                              child: ListTile(
-                                leading: const Icon(Icons.category_rounded,
-                                    color: Colors.white),
-                                title: Text(
-                                    provider.seleccionado.category.categoryName,
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold)),
+                              child: Text(
+                                '\$ ${provider.seleccionado.price}',
+                                style: const TextStyle(
+                                    color: LightColors.primary,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                         Text(
                           '${provider.seleccionado.stock} disponibles',
                           style: const TextStyle(
@@ -70,112 +72,121 @@ class ProductoView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text(
-                    '\$ ${provider.seleccionado.price}',
-                    style: const TextStyle(
-                        color: LightColors.primary,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    provider.seleccionado.description,
-                    style: const TextStyle(
-                      fontSize: 20,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      provider.seleccionado.description,
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      'Categoria: ${provider.seleccionado.category.categoryName}',
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: LightColors.grey),
+                    ),
                   ),
                   (provider.seleccionado.stock < 1)
-                      ? const Center(
-                          child: Text(
-                            'Producto agotado',
-                            style: TextStyle(fontSize: 20, color: Colors.red),
+                      ? Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: const Center(
+                            child: Text(
+                              'Producto agotado',
+                              style: TextStyle(fontSize: 20, color: Colors.red),
+                            ),
                           ),
                         )
-                      : Column(
-                          children: [
-                            SizedBox(
-                              height: 60,
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    surfaceTintColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                  ),
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'Agregar al carrito',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: LightColors.primary),
-                                  )),
-                            ),
-                            const SizedBox(height: 10),
-                            SizedBox(
+                      : Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            children: [
+                              SizedBox(
                                 height: 60,
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                    onPressed: () {
-                                      showModalBottomSheet(
-                                          enableDrag: true,
-                                          showDragHandle: true,
-                                          context: context,
-                                          builder: (_) {
-                                            return BottomSheet(
-                                                onClosing: () {},
-                                                builder: (_) {
-                                                  return SizedBox(
-                                                    height: MediaQuery.sizeOf(
-                                                                context)
-                                                            .height *
-                                                        0.3,
-                                                    child: const Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical:
-                                                                      16.0),
-                                                          child: Text(
-                                                            'Cantidad',
-                                                            style: TextStyle(
-                                                                fontSize: 24,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          'Elige la cantidad de productos a comprar',
-                                                          style: TextStyle(
-                                                            fontSize: 18,
-                                                          ),
-                                                        ),
-                                                        _ProductoCounter(),
-                                                        _BuyButton()
-                                                      ],
-                                                    ),
-                                                  );
-                                                });
-                                          });
-                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.white),
+                                      foregroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.white),
+                                      surfaceTintColor:
+                                          MaterialStateProperty.all(
+                                              Colors.white),
+                                    ),
+                                    onPressed: () {},
                                     child: const Text(
-                                      'Comprar',
+                                      'Agregar al carrito',
                                       style: TextStyle(
                                           fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    )))
-                          ],
+                                          color: LightColors.primary),
+                                    )),
+                              ),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                  height: 60,
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                            enableDrag: true,
+                                            showDragHandle: true,
+                                            context: context,
+                                            builder: (_) {
+                                              return BottomSheet(
+                                                  onClosing: () {},
+                                                  builder: (_) {
+                                                    return SizedBox(
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          0.3,
+                                                      child: const Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    vertical:
+                                                                        16.0),
+                                                            child: Text(
+                                                              'Cantidad',
+                                                              style: TextStyle(
+                                                                  fontSize: 24,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            'Elige la cantidad de productos a comprar',
+                                                            style: TextStyle(
+                                                              fontSize: 18,
+                                                            ),
+                                                          ),
+                                                          _ProductoCounter(),
+                                                          _BuyButton()
+                                                        ],
+                                                      ),
+                                                    );
+                                                  });
+                                            });
+                                      },
+                                      child: const Text(
+                                        'Comprar',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      )))
+                            ],
+                          ),
                         )
                 ],
               ),

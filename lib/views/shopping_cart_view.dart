@@ -24,7 +24,7 @@ class ShoppingCartView extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * .75,
+                    height: MediaQuery.of(context).size.height * .74,
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: 8,

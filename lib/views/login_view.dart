@@ -31,7 +31,7 @@ class LoginView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Card(
                 child: SizedBox(
-                  height: 400,
+                  height: 500,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Form(
